@@ -511,7 +511,6 @@ async function updateBalances() {
     linearAmounts.setNetReleasePeriod();
 
     // If we have not hit the unlock period then just send a message and end processing
-    /*
     if (
         currentTime < cliffEdgeTimestamp) {
         console.log("No tokens available yet");
@@ -531,7 +530,6 @@ async function updateBalances() {
         var toastObject = JSON.parse(toastResponse);
         Toastify(toastObject).showToast();
     } else {
-    */
         // If we have entered the unlock period then go ahead and get the amounts first
         document.getElementById("pb").style.width = '0%';
         console.log("Disabling button");
@@ -630,7 +628,7 @@ async function updateBalances() {
             var toastObject = JSON.parse(toastResponse);
             Toastify(toastObject).showToast();
         }
-    // }
+    }
 }
 
 async function calculateBalances() {
