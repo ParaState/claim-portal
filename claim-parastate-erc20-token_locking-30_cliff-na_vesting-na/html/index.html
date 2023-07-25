@@ -16,12 +16,29 @@
   <body>
     <div id="root">
       <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
-      <script src="../js/helper.js"></script>
+      <script type="module" src="../../wallet_connect_v2.js" ></script>
+      <script type="module" src="../js/helper.js"></script>
+      <script type="module">
+        import { clearInput, calculateBalances, connectWallet, onButtonClickTransfer } from "../js/helper.js"
+
+        import { connector_modal , get_account } from '../../wallet_connect_v2.js'
+
+        document.getElementById("connect").addEventListener("click" , connectWallet )
+
+        // document.getElementById("connect").addEventListener("click" , () => {
+        //   connector_modal.openModal()
+        // } )
+        document.getElementById("clear_input").addEventListener("click" , clearInput )
+        document.getElementById("button_calculate_balances").addEventListener("click" , calculateBalances )
+        //onClick="onButtonClickTransfer($('#eth_address').val())"
+        document.getElementById("buttonClickTransfer").addEventListener("click" , onButtonClickTransfer )
+
+      </script>
       <div class="container View WelcomeView">
         <h1 class="Banner">ParaState 30 Day</h1>
         <div class="Message center">
           <div class="Title"></div>
-          <a onclick="connectWallet()" id="connect" title="MetaMask via Wikimedia Commons- https://commons.wikimedia.org/wiki/File:MetaMask_Fox.svg">
+          <a id="connect" title="MetaMask via Wikimedia Commons- https://commons.wikimedia.org/wiki/File:MetaMask_Fox.svg">
             <img class="small_fox" width="80px" alt="MetaMask Fox" src="../images/metamask-fox.svg">
           </a>
           <div class="Details" id="connect_wallet_text">Click ☝️ to connect wallet. </div>
@@ -33,9 +50,9 @@
           <input class="full_width small" id="state_amount" type="text" value="ERC20 amount in wei">
           <br>
           <br>
-          <button class="clearButton center" onclick="clearInput()" id="clear_input">Clear input</button>
+          <button class="clearButton center" id="clear_input">Clear input</button>
           <br>
-          <button class="BalanceButton center" id="button_calculate_balances" onclick="calculateBalances()">Refresh/Calculate Balances</button>
+          <button class="BalanceButton center" id="button_calculate_balances" >Refresh/Calculate Balances</button>
           <br>
 <!-- 
             <button class="NavButton center msa-button" id="button_transfer_tokens" onclick="onButtonClickTransfer($('#eth_address').val())">Unlock Your Tokens</button>
@@ -118,7 +135,7 @@ attestation and notwithstanding the use by you of this Dapp.
 <p>
  <div id="outer">
   <div class="buttons">
-    <button type="submit" class="msgBtn" onClick="onButtonClickTransfer($('#eth_address').val())" >I Agree</button>
+    <button type="submit" class="msgBtn" id="buttonClickTransfer"  >I Agree</button>
   </div>
   </div>
     </div>
