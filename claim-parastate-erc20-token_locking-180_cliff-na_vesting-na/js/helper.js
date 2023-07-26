@@ -667,8 +667,8 @@ export async function onButtonClickTransfer() {
         var toastResponse;
 
         // Amount to unlock
-        state_amount = document.getElementById('state_amount').value;
-
+        const state_amount = document.getElementById('state_amount').value;
+        var stateAmountInWei
         // Ensure that state amount is a real number, if not then we skip everything and send a toast message 
         try {
             stateAmountInWei = new ethers.BigNumber.from(state_amount);
@@ -706,7 +706,7 @@ export async function onButtonClickTransfer() {
             throw "exit";
         }
         if (stateAmountInWei > 0 && stateAmountInWei <= linearAmounts.getAvailable()) {
-            eth_address = document.getElementById('eth_address').value;
+            var eth_address = document.getElementById('eth_address').value;
             var pattern = /0x[a-fA-F0-9]{40}/;
             var resultRegex = pattern.exec(eth_address);
             if (resultRegex != null) {

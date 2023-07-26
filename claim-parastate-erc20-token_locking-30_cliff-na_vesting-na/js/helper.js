@@ -670,8 +670,8 @@ export async function onButtonClickTransfer() {
         var toastResponse;
 
         // Amount to unlock
-        state_amount = document.getElementById('state_amount').value;
-
+        const state_amount = document.getElementById('state_amount').value;
+        var stateAmountInWei
         // Ensure that state amount is a real number, if not then we skip everything and send a toast message 
         try {
             stateAmountInWei = new ethers.BigNumber.from(state_amount);
