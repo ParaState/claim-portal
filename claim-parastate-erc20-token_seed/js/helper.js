@@ -1,334 +1,334 @@
 const abi = [
         {
-                "inputs": [
-                        {
-                                "internalType": "contract IERC20",
-                                "name": "_erc20_contract_address",
-                                "type": "address"
-                        }
-                ],
-                "stateMutability": "nonpayable",
-                "type": "constructor"
+            "inputs": [
+                {
+                    "internalType": "contract IERC20",
+                    "name": "_erc20_contract_address",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
         },
         {
-                "anonymous": false,
-                "inputs": [
-                        {
-                                "indexed": false,
-                                "internalType": "address",
-                                "name": "recipient",
-                                "type": "address"
-                        },
-                        {
-                                "indexed": false,
-                                "internalType": "uint256",
-                                "name": "amount",
-                                "type": "uint256"
-                        }
-                ],
-                "name": "AllocationPerformed",
-                "type": "event"
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "recipient",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "AllocationPerformed",
+            "type": "event"
         },
         {
-                "inputs": [
-                        {
-                                "internalType": "address[]",
-                                "name": "recipients",
-                                "type": "address[]"
-                        },
-                        {
-                                "internalType": "uint256[]",
-                                "name": "amounts",
-                                "type": "uint256[]"
-                        }
-                ],
-                "name": "bulkDepositTokens",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
+            "inputs": [
+                {
+                    "internalType": "address[]",
+                    "name": "recipients",
+                    "type": "address[]"
+                },
+                {
+                    "internalType": "uint256[]",
+                    "name": "amounts",
+                    "type": "uint256[]"
+                }
+            ],
+            "name": "bulkDepositTokens",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
         },
         {
-                "inputs": [
-                        {
-                                "internalType": "address",
-                                "name": "recipient",
-                                "type": "address"
-                        },
-                        {
-                                "internalType": "uint256",
-                                "name": "amount",
-                                "type": "uint256"
-                        }
-                ],
-                "name": "depositTokens",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "recipient",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "depositTokens",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
         },
         {
-                "inputs": [],
-                "name": "finalizeAllIncomingDeposits",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
+            "inputs": [],
+            "name": "finalizeAllIncomingDeposits",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
         },
         {
-                "inputs": [
-                        {
-                                "internalType": "int256",
-                                "name": "_cliffTimePeriod",
-                                "type": "int256"
-                        },
-                        {
-                                "internalType": "int256",
-                                "name": "_releaseTimePeriod",
-                                "type": "int256"
-                        }
-                ],
-                "name": "setTimestamp",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
+            "inputs": [
+                {
+                    "internalType": "int256",
+                    "name": "_cliffTimePeriod",
+                    "type": "int256"
+                },
+                {
+                    "internalType": "int256",
+                    "name": "_releaseTimePeriod",
+                    "type": "int256"
+                }
+            ],
+            "name": "setTimestamp",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
         },
         {
-                "anonymous": false,
-                "inputs": [
-                        {
-                                "indexed": false,
-                                "internalType": "address",
-                                "name": "from",
-                                "type": "address"
-                        },
-                        {
-                                "indexed": false,
-                                "internalType": "uint256",
-                                "name": "amount",
-                                "type": "uint256"
-                        }
-                ],
-                "name": "TokensDeposited",
-                "type": "event"
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "from",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "TokensDeposited",
+            "type": "event"
         },
         {
-                "anonymous": false,
-                "inputs": [
-                        {
-                                "indexed": false,
-                                "internalType": "address",
-                                "name": "recipient",
-                                "type": "address"
-                        },
-                        {
-                                "indexed": false,
-                                "internalType": "uint256",
-                                "name": "amount",
-                                "type": "uint256"
-                        }
-                ],
-                "name": "TokensUnlocked",
-                "type": "event"
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "recipient",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "TokensUnlocked",
+            "type": "event"
         },
         {
-                "inputs": [
-                        {
-                                "internalType": "contract IERC20",
-                                "name": "token",
-                                "type": "address"
-                        },
-                        {
-                                "internalType": "uint256",
-                                "name": "amount",
-                                "type": "uint256"
-                        }
-                ],
-                "name": "transferAccidentallyLockedTokens",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
+            "inputs": [
+                {
+                    "internalType": "contract IERC20",
+                    "name": "token",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "transferAccidentallyLockedTokens",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
         },
         {
-                "inputs": [
-                        {
-                                "internalType": "contract IERC20",
-                                "name": "token",
-                                "type": "address"
-                        },
-                        {
-                                "internalType": "address",
-                                "name": "to",
-                                "type": "address"
-                        },
-                        {
-                                "internalType": "uint256",
-                                "name": "amount",
-                                "type": "uint256"
-                        }
-                ],
-                "name": "transferTimeLockedTokensAfterTimePeriod",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
+            "inputs": [
+                {
+                    "internalType": "contract IERC20",
+                    "name": "token",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "to",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "transferTimeLockedTokensAfterTimePeriod",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
         },
         {
-                "inputs": [
-                        {
-                                "internalType": "uint256",
-                                "name": "amount",
-                                "type": "uint256"
-                        }
-                ],
-                "name": "withdrawEth",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "withdrawEth",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
         },
         {
-                "stateMutability": "payable",
-                "type": "receive"
+            "stateMutability": "payable",
+            "type": "receive"
         },
         {
-                "inputs": [],
-                "name": "allIncomingDepositsFinalised",
-                "outputs": [
-                        {
-                                "internalType": "bool",
-                                "name": "",
-                                "type": "bool"
-                        }
-                ],
-                "stateMutability": "view",
-                "type": "function"
+            "inputs": [],
+            "name": "allIncomingDepositsFinalised",
+            "outputs": [
+                {
+                    "internalType": "bool",
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
         },
         {
-                "inputs": [
-                        {
-                                "internalType": "address",
-                                "name": "",
-                                "type": "address"
-                        }
-                ],
-                "name": "alreadyWithdrawn",
-                "outputs": [
-                        {
-                                "internalType": "uint256",
-                                "name": "",
-                                "type": "uint256"
-                        }
-                ],
-                "stateMutability": "view",
-                "type": "function"
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "name": "alreadyWithdrawn",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
         },
         {
-                "inputs": [
-                        {
-                                "internalType": "address",
-                                "name": "",
-                                "type": "address"
-                        }
-                ],
-                "name": "balances",
-                "outputs": [
-                        {
-                                "internalType": "uint256",
-                                "name": "",
-                                "type": "uint256"
-                        }
-                ],
-                "stateMutability": "view",
-                "type": "function"
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "name": "balances",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
         },
         {
-                "inputs": [],
-                "name": "cliffEdge",
-                "outputs": [
-                        {
-                                "internalType": "uint256",
-                                "name": "",
-                                "type": "uint256"
-                        }
-                ],
-                "stateMutability": "view",
-                "type": "function"
+            "inputs": [],
+            "name": "cliffEdge",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
         },
         {
-                "inputs": [],
-                "name": "contractBalance",
-                "outputs": [
-                        {
-                                "internalType": "uint256",
-                                "name": "",
-                                "type": "uint256"
-                        }
-                ],
-                "stateMutability": "view",
-                "type": "function"
+            "inputs": [],
+            "name": "contractBalance",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
         },
         {
-                "inputs": [],
-                "name": "erc20Contract",
-                "outputs": [
-                        {
-                                "internalType": "contract IERC20",
-                                "name": "",
-                                "type": "address"
-                        }
-                ],
-                "stateMutability": "view",
-                "type": "function"
+            "inputs": [],
+            "name": "erc20Contract",
+            "outputs": [
+                {
+                    "internalType": "contract IERC20",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
         },
         {
-                "inputs": [],
-                "name": "initialTimestamp",
-                "outputs": [
-                        {
-                                "internalType": "uint256",
-                                "name": "",
-                                "type": "uint256"
-                        }
-                ],
-                "stateMutability": "view",
-                "type": "function"
+            "inputs": [],
+            "name": "initialTimestamp",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
         },
         {
-                "inputs": [],
-                "name": "owner",
-                "outputs": [
-                        {
-                                "internalType": "address payable",
-                                "name": "",
-                                "type": "address"
-                        }
-                ],
-                "stateMutability": "view",
-                "type": "function"
+            "inputs": [],
+            "name": "owner",
+            "outputs": [
+                {
+                    "internalType": "address payable",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
         },
         {
-                "inputs": [],
-                "name": "releaseEdge",
-                "outputs": [
-                        {
-                                "internalType": "uint256",
-                                "name": "",
-                                "type": "uint256"
-                        }
-                ],
-                "stateMutability": "view",
-                "type": "function"
+            "inputs": [],
+            "name": "releaseEdge",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
         },
         {
-                "inputs": [],
-                "name": "timestampSet",
-                "outputs": [
-                        {
-                                "internalType": "bool",
-                                "name": "",
-                                "type": "bool"
-                        }
-                ],
-                "stateMutability": "view",
-                "type": "function"
+            "inputs": [],
+            "name": "timestampSet",
+            "outputs": [
+                {
+                    "internalType": "bool",
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
         }
-];
+    ];
 
 // Address of the linear timelock instance
 const linear_address = '0x09F5D057809Efe7f4507E23463aC5b492F8C1069';
@@ -446,65 +446,147 @@ class Amounts {
 }
 
 var linearAmounts = new Amounts();
-var provider;
-var signer;
+// var provider;
+// var signer;
+import { connector_modal, get_account, eth_client, v2 } from '../../wallet_connect_v2.js'
 
 document.addEventListener("DOMContentLoaded", function(event) {
     console.log("Page has loaded ...");
-    window.ethereum.enable();
-    connectWallet().then(() => {
-        console.log("Wallet connected in page load section");
-        updateBalances().then(() => {
-            console.log("Ready to unlock tokens ...")
-        });
-    });
+//     window.ethereum.enable();
+//     connectWallet().then(() => {
+//         console.log("Wallet connected in page load section");
+//         updateBalances().then(() => {
+//             console.log("Ready to unlock tokens ...")
+//         });
+//     });
+    try_connect_wallet()
 });
 
-async function connectWallet() {
-    linearAmounts.reset();
-    window.ethereum.enable();
-    console.log('Called connect wallet which is inside helper.js');
-    provider = new ethers.providers.Web3Provider(window.ethereum);
-    console.log(provider);
-    signer = provider.getSigner();
-    console.log(signer);
-    var addressOfSigner = await signer.getAddress();
-    document.getElementById("eth_address").value = addressOfSigner;
-    document.getElementById("connect_wallet_text").style.color = "#00FF7F";
-    document.getElementById("connect_wallet_text").innerHTML = "Wallet connected ✔";
 
+async function open_connector_modal() {
+    return await connector_modal.openModal()
 }
 
-function clearInput() {
+function check_network(v) {
+    console.log(`Network: `, v)
+    const { chain, chains } = v
+    if (!chain) return
+    if (chain.id !== chains[0].id) {
+        eth_client.switchNetwork({
+        chainId: chains[0].id
+        }).then(result => {
+        console.log(`After change network: `, result)
+        check_network({
+                chain: result,
+                chains: [{
+                id: 1
+                }]
+        })
+        }).catch(e => {
+        // check_network({
+        //     chain,
+        //     chains: [{
+        //         id: 1 
+        //     }]
+        // })
+        })
+    } else {
+        console.log(` Selected network : `, chain)
+    }
+}
+
+eth_client.watchNetwork(v => {
+    check_network(v)
+})
+
+eth_client.watchAccount(account => {
+    console.log(`Account:`, account)
+    changeAccount(account)
+})
+
+function changeAccount(account) {
+//check network 
+    check_network(eth_client.getNetwork())
+    document.getElementById("eth_address").value = account.address;
+    document.getElementById("connect_wallet_text").style.color = "#00FF7F";
+    document.getElementById("connect_wallet_text").innerHTML = "Wallet connected ✔";
+    updateBalances()
+}
+
+async function try_connect_wallet() {
+    console.log(`Try to connect wallet.`)
+    const account = get_account()
+
+    await open_connector_modal()
+    if (account.isConnected === false) {
+        console.log(`Show connector modal.`)
+    }
+    else {
+        console.log(`Connected .`)
+        changeAccount(account)
+    }
+}
+
+connector_modal.subscribeModal(e => {
+// if( e.open === false ) {
+//     // after closed.
+//     try_connect_wallet()
+// }
+})
+
+export async function connectWallet() {
+    linearAmounts.reset();
+//     window.ethereum.enable();
+//     console.log('Called connect wallet which is inside helper.js');
+//     provider = new ethers.providers.Web3Provider(window.ethereum);
+//     console.log(provider);
+//     signer = provider.getSigner();
+//     console.log(signer);
+//     var addressOfSigner = await signer.getAddress();
+//     document.getElementById("eth_address").value = addressOfSigner;
+//     document.getElementById("connect_wallet_text").style.color = "#00FF7F";
+//     document.getElementById("connect_wallet_text").innerHTML = "Wallet connected ✔";
+    try_connect_wallet()
+}
+
+export function clearInput() {
     document.getElementById("eth_address").value = '';
     document.getElementById("state_amount").value = '';
 }
 
-async function updateBalances() {
+export async function updateBalances() {
     linearAmounts.reset();
 
-    window.ethereum.enable();
+//     window.ethereum.enable();
 
-    provider = new ethers.providers.Web3Provider(window.ethereum);
+//     provider = new ethers.providers.Web3Provider(window.ethereum);
+    const public_client = await v2.getPublicClient()
+    const wallet_client = await v2.getWalletClient()
+    console.log(`public_client, `, public_client)
 
     // Current time
-    var currentBlock = await provider.getBlock("latest");
-    currentTime = currentBlock.timestamp;
-    currentTimeBN = new ethers.BigNumber.from(currentTime);
+    var currentBlock = await public_client.getBlock()
+    const currentTime = currentBlock.timestamp;
+    const currentTimeBN = new ethers.BigNumber.from(currentTime);
     linearAmounts.setCurrentTime(currentTimeBN);
     console.log("Current time: " + linearAmounts.getCurrentTime());
 
     // Instantiate linear timelock contract
-    linearTimeLockContract = new ethers.Contract(linear_address, abi, provider);
+//     linearTimeLockContract = new ethers.Contract(linear_address, abi, provider);
+    const linearTimeLockContract = v2.getContract({
+        abi,
+        address: linear_address,
+        walletClient: wallet_client
+    })
 
     // Cliff edge timestamp
-    cliffEdgeTimestamp = await linearTimeLockContract.cliffEdge();
-    cliffEdgeTimestampBN = new ethers.BigNumber.from(cliffEdgeTimestamp);
+    const cliffEdgeTimestamp = await linearTimeLockContract.read.cliffEdge();
+    const cliffEdgeTimestampBN = new ethers.BigNumber.from(cliffEdgeTimestamp);
     linearAmounts.setCliffEdge(cliffEdgeTimestampBN);
 
     // Release edge timestamp
-    releaseEdgeTimestamp = await linearTimeLockContract.releaseEdge();
-    releaseEdgeTimestampBN = new ethers.BigNumber.from(releaseEdgeTimestamp);
+    const releaseEdgeTimestamp = await linearTimeLockContract.read.releaseEdge();
+    const releaseEdgeTimestampBN = new ethers.BigNumber.from(releaseEdgeTimestamp);
     linearAmounts.setReleaseEdge(releaseEdgeTimestampBN);
 
     // Net release period
@@ -541,20 +623,20 @@ async function updateBalances() {
 
         // Eth address
         console.log("Calculating balances");
-        eth_address = document.getElementById('eth_address').value;
+        const eth_address = document.getElementById('eth_address').value;
         var pattern = /0x[a-fA-F0-9]{40}/;
         var resultRegex = pattern.exec(eth_address);
         if (resultRegex != null) {
             var recipientAddress = resultRegex[0];
             // Balance locked 
-            linearUsersBalance = await linearTimeLockContract.balances(resultRegex[0]);
-            linearUsersBalanceBN = new ethers.BigNumber.from(linearUsersBalance);
+            const linearUsersBalance = await linearTimeLockContract.read.balances([recipientAddress]);
+            const linearUsersBalanceBN = new ethers.BigNumber.from(linearUsersBalance);
             linearAmounts.setLocked(linearUsersBalanceBN);
             console.log("User's balance: " + linearAmounts.getLocked());
 
             // Amount already withdrawn
-            linearAlreadyWithdrawn = await linearTimeLockContract.alreadyWithdrawn(resultRegex[0]);
-            linearAlreadyWithdrawnBN = new ethers.BigNumber.from(linearAlreadyWithdrawn);
+            const linearAlreadyWithdrawn = await linearTimeLockContract.read.alreadyWithdrawn([recipientAddress]);
+            const linearAlreadyWithdrawnBN = new ethers.BigNumber.from(linearAlreadyWithdrawn);
             linearAmounts.setWithdrawn(linearAlreadyWithdrawnBN);
             console.log("Already withdrawn: " + linearAmounts.getWithdrawn());
 
@@ -631,25 +713,30 @@ async function updateBalances() {
     }
 }
 
-async function calculateBalances() {
+export async function calculateBalances() {
     linearAmounts.reset();
     await updateBalances();
 }
 
-async function onButtonClickTransfer() {
+export async function onButtonClickTransfer() {
     linearAmounts.reset();
     await updateBalances();
     // Provider
-    window.ethereum.enable()
-    provider = new ethers.providers.Web3Provider(window.ethereum);
+//     window.ethereum.enable()
+//     provider = new ethers.providers.Web3Provider(window.ethereum);
 
-    // Signer
-    signer = provider.getSigner();
-    console.log(signer);
+//     // Signer
+//     signer = provider.getSigner();
+//     console.log(signer);
 
-    // Instantiate all 3 timelock contracts
-    linearTimeLockContract = new ethers.Contract(linear_address, abi, signer);
-
+//     // Instantiate all 3 timelock contracts
+//     linearTimeLockContract = new ethers.Contract(linear_address, abi, signer);
+    const wallet_client = await v2.getWalletClient()
+    const linearTimeLockContract = v2.getContract({
+        abi,
+        address: linear_address,
+        walletClient: wallet_client
+    })
     // UI mods
     document.getElementById("pb").style.width = '0%';
     console.log("Disabling button");
@@ -661,8 +748,8 @@ async function onButtonClickTransfer() {
     var toastResponse;
 
     // Amount to unlock
-    state_amount = document.getElementById('state_amount').value;
-
+    const state_amount = document.getElementById('state_amount').value;
+    var stateAmountInWei 
     // Ensure that state amount is a real number, if not then we skip everything and send a toast message 
     try {
         stateAmountInWei = new ethers.BigNumber.from(state_amount);
@@ -703,9 +790,10 @@ async function onButtonClickTransfer() {
         eth_address = document.getElementById('eth_address').value;
         var pattern = /0x[a-fA-F0-9]{40}/;
         var resultRegex = pattern.exec(eth_address);
+        var response
         if (resultRegex != null) {
             var recipientAddress = resultRegex[0];
-            response = await linearTimeLockContract.transferTimeLockedTokensAfterTimePeriod(erc20_contract_address, recipientAddress, stateAmountInWei);
+            response = await linearTimeLockContract.write.transferTimeLockedTokensAfterTimePeriod(erc20_contract_address, recipientAddress, stateAmountInWei);
             var toastResponse = JSON.stringify({
                 avatar: "../images/favicon.ico",
                 text: "Congratulations, tokens unlocked!",
