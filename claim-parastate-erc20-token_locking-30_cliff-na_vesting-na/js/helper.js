@@ -408,11 +408,12 @@ async function open_connector_modal(){
     return await connector_modal.openModal()
 }
 
-console.log( eth_client )
+// console.log( eth_client )
 
 function check_network( v ){
     console.log( `Network: `, v )
     const { chain , chains } = v 
+    if( !chain ) return 
     if( chain.id !== chains[0].id ) {
         eth_client.switchNetwork({
             chainId: chains[0].id 
@@ -462,9 +463,9 @@ async function try_connect_wallet(){
     console.log(`Try to connect wallet.`)
     const account = get_account()
 
+    await open_connector_modal()
     if( account.isConnected === false ) {
         console.log( `Show connector modal.`)
-        await open_connector_modal()
     } 
     else {
         console.log(`Connected .`)
@@ -472,10 +473,11 @@ async function try_connect_wallet(){
     }
 }
 
+
 connector_modal.subscribeModal( e => {
     if( e.open === false ) {
         // after closed.
-        try_connect_wallet()
+        // try_connect_wallet()
     }
 })
 
