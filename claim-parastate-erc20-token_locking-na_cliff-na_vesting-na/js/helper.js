@@ -388,41 +388,119 @@ class Amounts {
 }
 
 var linearAmounts = new Amounts();
-var provider;
-var signer;
+// var provider;
+// var signer;
+import { connector_modal , get_account, eth_client, v2 } from '../../wallet_connect_v2.js'
 
 document.addEventListener("DOMContentLoaded", function(event) {
     console.log("Page has loaded ...");
-    window.ethereum.enable();
-    connectWallet().then(() => {
-        console.log("Wallet connected in page load section");
-        updateBalances().then(() => {
-            console.log("Ready to unlock tokens ...")
-        });
-    });
+    // window.ethereum.enable();
+    // connectWallet().then(() => {
+    //     console.log("Wallet connected in page load section");
+    //     updateBalances().then(() => {
+    //         console.log("Ready to unlock tokens ...")
+    //     });
+    // });
+    try_connect_wallet()
 });
 
-async function connectWallet() {
-    linearAmounts.reset();
-    window.ethereum.enable();
-    console.log('Called connect wallet which is inside helper.js');
-    provider = new ethers.providers.Web3Provider(window.ethereum);
-    console.log(provider);
-    signer = provider.getSigner();
-    console.log(signer);
-    var addressOfSigner = await signer.getAddress();
-    document.getElementById("eth_address").value = addressOfSigner;
+
+async function open_connector_modal(){
+    return await connector_modal.openModal()
+}
+
+function check_network( v ){
+    console.log( `Network: `, v )
+    const { chain , chains } = v 
+    if( !chain ) return 
+    if( chain.id !== chains[0].id ) {
+        eth_client.switchNetwork({
+            chainId: chains[0].id 
+        }).then( result => {
+            console.log(`After change network: ` , result )
+            check_network({
+                chain: result,
+                chains: [{
+                    id: 1 
+                }]
+            })
+        }).catch( e => {
+            // check_network({
+            //     chain,
+            //     chains: [{
+            //         id: 1 
+            //     }]
+            // })
+        })
+    } else {
+        console.log(` Selected network : ` , chain )
+    }
+}
+
+eth_client.watchNetwork( v => {
+    check_network( v )
+})
+
+eth_client.watchAccount( account => {
+    console.log(`Account:` , account )
+    changeAccount( account )
+})
+
+function changeAccount( account ) {
+    //check network 
+    
+    check_network( eth_client.getNetwork() )
+
+    document.getElementById("eth_address").value = account.address ;
     document.getElementById("connect_wallet_text").style.color = "#00FF7F";
     document.getElementById("connect_wallet_text").innerHTML = "Wallet connected ✔";
 
+    updateBalances()
 }
 
-function clearInput() {
+async function try_connect_wallet(){
+    console.log(`Try to connect wallet.`)
+    const account = get_account()
+
+    await open_connector_modal()
+    if( account.isConnected === false ) {
+        console.log( `Show connector modal.`)
+    } 
+    else {
+        console.log(`Connected .`)
+        changeAccount( account )
+    }
+}
+
+connector_modal.subscribeModal( e => {
+    // if( e.open === false ) {
+    //     // after closed.
+    //     try_connect_wallet()
+    // }
+})
+
+export async function connectWallet() {
+    linearAmounts.reset();
+    // window.ethereum.enable();
+    // console.log('Called connect wallet which is inside helper.js');
+    // provider = new ethers.providers.Web3Provider(window.ethereum);
+    // console.log(provider);
+    // signer = provider.getSigner();
+    // console.log(signer);
+    // var addressOfSigner = await signer.getAddress();
+    // document.getElementById("eth_address").value = addressOfSigner;
+    // document.getElementById("connect_wallet_text").style.color = "#00FF7F";
+    // document.getElementById("connect_wallet_text").innerHTML = "Wallet connected ✔";
+
+    try_connect_wallet()
+}
+
+export function clearInput() {
     document.getElementById("eth_address").value = '';
     document.getElementById("state_amount").value = '';
 }
 
-async function updateBalances() {
+export async function updateBalances() {
     // If we have entered the unlock period then go ahead and get the amounts first
     document.getElementById("pb").style.width = '0%';
     console.log("Disabling button");
@@ -433,43 +511,52 @@ async function updateBalances() {
     
     linearAmounts.reset();
 
-    window.ethereum.enable();
+    // window.ethereum.enable();
 
-    provider = new ethers.providers.Web3Provider(window.ethereum);
+    // provider = new ethers.providers.Web3Provider(window.ethereum);
+    const public_client = await v2.getPublicClient()
+    const wallet_client = await v2.getWalletClient()
+    console.log(`public_client, ` , public_client )
 
     // Current time
-    var currentBlock = await provider.getBlock("latest");
-    currentTime = currentBlock.timestamp;
-    currentTimeBN = new ethers.BigNumber.from(currentTime);
+    // var currentBlock = await provider.getBlock("latest");
+    var currentBlock = await public_client.getBlock()
+    const currentTime = currentBlock.timestamp;
+    const currentTimeBN = new ethers.BigNumber.from(currentTime);
     linearAmounts.setCurrentTime(currentTimeBN);
     console.log("Current time: " + linearAmounts.getCurrentTime());
 
     // Instantiate linear timelock contract
-    linearTimeLockContract = new ethers.Contract(linear_address, abi, provider);
+    // linearTimeLockContract = new ethers.Contract(linear_address, abi, provider);
+    const linearTimeLockContract = v2.getContract({
+        abi,
+        address: linear_address,
+        walletClient: wallet_client 
+    } )
 
     // Release edge timestamp
-    releaseEdgeTimestamp = await linearTimeLockContract.timePeriod();
-    releaseEdgeTimestampBN = new ethers.BigNumber.from(releaseEdgeTimestamp);
+    const releaseEdgeTimestamp = await linearTimeLockContract.read.timePeriod();
+    const releaseEdgeTimestampBN = new ethers.BigNumber.from(releaseEdgeTimestamp);
     linearAmounts.setReleaseEdge(releaseEdgeTimestampBN);
 
     var toastResponse;
 
     // Eth address
     console.log("Calculating balances");
-    eth_address = document.getElementById('eth_address').value;
+    const eth_address = document.getElementById('eth_address').value;
     var pattern = /0x[a-fA-F0-9]{40}/;
     var resultRegex = pattern.exec(eth_address);
     if (resultRegex != null) {
         var recipientAddress = resultRegex[0];
         // Balance locked 
-        linearUsersBalance = await linearTimeLockContract.balances(resultRegex[0]);
-        linearUsersBalanceBN = new ethers.BigNumber.from(linearUsersBalance);
+        const linearUsersBalance = await linearTimeLockContract.read.balances([recipientAddress]);
+        const linearUsersBalanceBN = new ethers.BigNumber.from(linearUsersBalance);
         linearAmounts.setLocked(linearUsersBalanceBN);
         console.log("User's balance: " + linearAmounts.getLocked());
 
         // Amount already withdrawn
-        linearAlreadyWithdrawn = await linearTimeLockContract.alreadyWithdrawn(resultRegex[0]);
-        linearAlreadyWithdrawnBN = new ethers.BigNumber.from(linearAlreadyWithdrawn);
+        const linearAlreadyWithdrawn = await linearTimeLockContract.read.alreadyWithdrawn([recipientAddress]);
+        const linearAlreadyWithdrawnBN = new ethers.BigNumber.from(linearAlreadyWithdrawn);
         linearAmounts.setWithdrawn(linearAlreadyWithdrawnBN);
         console.log("Already withdrawn: " + linearAmounts.getWithdrawn());
 
@@ -523,12 +610,12 @@ async function updateBalances() {
     }
 }
 
-async function calculateBalances() {
+export async function calculateBalances() {
     linearAmounts.reset();
     await updateBalances();
 }
 
-async function onButtonClickTransfer() {
+export async function onButtonClickTransfer() {
     // UI mods
     document.getElementById("pb").style.width = '0%';
     console.log("Disabling button");
@@ -538,17 +625,22 @@ async function onButtonClickTransfer() {
 
     linearAmounts.reset();
     await updateBalances();
-    // Provider
-    window.ethereum.enable()
-    provider = new ethers.providers.Web3Provider(window.ethereum);
+    // // Provider
+    // window.ethereum.enable()
+    // provider = new ethers.providers.Web3Provider(window.ethereum);
 
-    // Signer
-    signer = provider.getSigner();
-    console.log(signer);
+    // // Signer
+    // signer = provider.getSigner();
+    // console.log(signer);
 
-    // Instantiate all 3 timelock contracts
-    linearTimeLockContract = new ethers.Contract(linear_address, abi, signer);
-
+    // // Instantiate all 3 timelock contracts
+    // linearTimeLockContract = new ethers.Contract(linear_address, abi, signer);
+    const wallet_client = await v2.getWalletClient()
+    const linearTimeLockContract = v2.getContract({
+        abi,
+        address: linear_address,
+        walletClient: wallet_client 
+    } )
 
     // If we have not hit the unlock period then just send a message and end processing
     if (
@@ -575,8 +667,8 @@ async function onButtonClickTransfer() {
         var toastResponse;
 
         // Amount to unlock
-        state_amount = document.getElementById('state_amount').value;
-
+        const state_amount = document.getElementById('state_amount').value;
+        var stateAmountInWei
         // Ensure that state amount is a real number, if not then we skip everything and send a toast message 
         try {
             stateAmountInWei = new ethers.BigNumber.from(state_amount);
@@ -619,7 +711,7 @@ async function onButtonClickTransfer() {
             var resultRegex = pattern.exec(eth_address);
             if (resultRegex != null) {
                 var recipientAddress = resultRegex[0];
-                response = await linearTimeLockContract.transferTimeLockedTokensAfterTimePeriod(erc20_contract_address, recipientAddress, stateAmountInWei);
+                const response = await linearTimeLockContract.write.transferTimeLockedTokensAfterTimePeriod(erc20_contract_address, recipientAddress, stateAmountInWei);
                 var toastResponse = JSON.stringify({
                     avatar: "../images/favicon.ico",
                     text: "Congratulations, tokens unlocked",
