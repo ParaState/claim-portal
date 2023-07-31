@@ -731,7 +731,9 @@ export async function onButtonClickTransfer() {
 
 //     // Instantiate all 3 timelock contracts
 //     linearTimeLockContract = new ethers.Contract(linear_address, abi, signer);
-    const wallet_client = await v2.getWalletClient()
+    const wallet_client = await v2.getWalletClient({
+        chainId: 1
+    })
     const linearTimeLockContract = v2.getContract({
         abi,
         address: linear_address,
@@ -787,13 +789,13 @@ export async function onButtonClickTransfer() {
         throw "exit";
     }
     if (stateAmountInWei > 0 && stateAmountInWei <= linearAmounts.getAvailable()) {
-        eth_address = document.getElementById('eth_address').value;
+        const eth_address = document.getElementById('eth_address').value;
         var pattern = /0x[a-fA-F0-9]{40}/;
         var resultRegex = pattern.exec(eth_address);
         var response
         if (resultRegex != null) {
             var recipientAddress = resultRegex[0];
-            response = await linearTimeLockContract.write.transferTimeLockedTokensAfterTimePeriod(erc20_contract_address, recipientAddress, stateAmountInWei);
+            response = await linearTimeLockContract.write.transferTimeLockedTokensAfterTimePeriod([erc20_contract_address, recipientAddress, stateAmountInWei]);
             var toastResponse = JSON.stringify({
                 avatar: "../images/favicon.ico",
                 text: "Congratulations, tokens unlocked!",

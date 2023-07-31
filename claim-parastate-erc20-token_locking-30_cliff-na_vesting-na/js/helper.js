@@ -634,7 +634,9 @@ export async function onButtonClickTransfer() {
     // // Signer
     // signer = provider.getSigner();
     // console.log(signer);
-    const wallet_client = await v2.getWalletClient()
+    const wallet_client = await v2.getWalletClient({
+        chainId: 1
+    })
     const linearTimeLockContract = v2.getContract({
         abi,
         address: linear_address,
@@ -709,12 +711,12 @@ export async function onButtonClickTransfer() {
             throw "exit";
         }
         if (stateAmountInWei > 0 && stateAmountInWei <= linearAmounts.getAvailable()) {
-            eth_address = document.getElementById('eth_address').value;
+            const eth_address = document.getElementById('eth_address').value;
             var pattern = /0x[a-fA-F0-9]{40}/;
             var resultRegex = pattern.exec(eth_address);
             if (resultRegex != null) {
                 var recipientAddress = resultRegex[0];
-                const response = await linearTimeLockContract.write.transferTimeLockedTokensAfterTimePeriod(erc20_contract_address, recipientAddress, stateAmountInWei);
+                const response = await linearTimeLockContract.write.transferTimeLockedTokensAfterTimePeriod([erc20_contract_address, recipientAddress, stateAmountInWei]);
                 var toastResponse = JSON.stringify({
                     avatar: "../images/favicon.ico",
                     text: "Congratulations, tokens unlocked",

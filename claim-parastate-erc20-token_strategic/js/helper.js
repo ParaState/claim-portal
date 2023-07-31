@@ -730,7 +730,9 @@ export async function onButtonClickTransfer() {
 //     signer = provider.getSigner();
 //     console.log(signer);
 
-    const wallet_client = await v2.getWalletClient()
+    const wallet_client = await v2.getWalletClient({
+        chainId: 1
+    })
     const linearTimeLockContract = v2.getContract({
         abi,
         address: linear_address,
@@ -795,7 +797,7 @@ export async function onButtonClickTransfer() {
         var response
         if (resultRegex != null) {
             var recipientAddress = resultRegex[0];
-            response = await linearTimeLockContract.write.transferTimeLockedTokensAfterTimePeriod(erc20_contract_address, recipientAddress, stateAmountInWei);
+            response = await linearTimeLockContract.write.transferTimeLockedTokensAfterTimePeriod([erc20_contract_address, recipientAddress, stateAmountInWei]);
             var toastResponse = JSON.stringify({
                 avatar: "../images/favicon.ico",
                 text: "Congratulations, tokens unlocked!",
