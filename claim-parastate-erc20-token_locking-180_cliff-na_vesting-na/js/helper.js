@@ -451,11 +451,17 @@ function changeAccount( account ) {
     
     check_network( eth_client.getNetwork() )
 
-    document.getElementById("eth_address").value = account.address ;
-    document.getElementById("connect_wallet_text").style.color = "#00FF7F";
-    document.getElementById("connect_wallet_text").innerHTML = "Wallet connected ✔";
-
-    updateBalances()
+    if( account.address ) {
+        document.getElementById("eth_address").value = account.address;
+        document.getElementById("connect_wallet_text").style.color = "#00FF7F";
+        document.getElementById("connect_wallet_text").innerHTML = "Wallet connected ✔";
+        updateBalances()
+    } else {
+        document.getElementById("eth_address").value = account.address;
+        document.getElementById("connect_wallet_text").style.color = 'white';
+        document.getElementById("connect_wallet_text").innerHTML = "Click ☝️ to connect wallet. ";
+        clearInput()
+    }
 }
 
 async function try_connect_wallet(){
